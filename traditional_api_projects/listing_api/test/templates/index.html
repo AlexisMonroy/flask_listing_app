@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block body %}
+        <p>Click <a href="{{ url_for('other_page') }}">here</a> to go to the Categories Overview page.</p>
+        <p>Click <a href="{{ url_for('third_page') }}">here</a> to go to the Third Page.</p>
+        <h1>User Data</h1>
+        <table>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+            {% for key, value in user_data.items() recursive %}
+                {% if value is mapping %}
+                    {{ loop(value.items()) }}
+                {% else %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+{% endblock %}
